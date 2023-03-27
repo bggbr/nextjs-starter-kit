@@ -1,0 +1,10 @@
+.product {
+    display: flex;
+    padding: 20px;
+    border: 1px solid pink;
+    margin-top: 3px;
+}
+
+.product > div {
+    margin-right: 10px;
+}
