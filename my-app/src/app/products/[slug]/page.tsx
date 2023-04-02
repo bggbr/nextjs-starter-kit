@@ -18,19 +18,19 @@ export function generateMetadata({ params }: Props) {
     };
 }
 
-export default function Product({ params: { slug } }: Props) {
-    const product = getProduct(slug);
+export default async function Product({ params: { slug } }: Props) {
+    const product = await getProduct(slug);
 
     if (!product) {
         notFound();
     }
 
-    return <h1>Product Pants ! {product}</h1>;
+    return <h1>Product Pants ! {product.name}</h1>;
 }
 
-export function generateStaticParams() {
-    const products = getProducts();
+export async function generateStaticParams() {
+    const products = await getProducts();
     return products.map((product) => ({
-        slug: product,
+        slug: product.id,
     }));
 }
