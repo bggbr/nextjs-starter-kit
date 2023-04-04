@@ -26,6 +26,19 @@ const nextConfig = {
             },
         ];
     },
+    async rewrites() {
+        return [
+            // 대체 개념
+            {
+                source: "/bang",
+                destination: "/about/me/bang",
+            },
+            {
+                source: "/items/:slug",
+                destination: "/products/:slug",
+            },
+        ];
+    },
 };
 
 module.exports = nextConfig;
