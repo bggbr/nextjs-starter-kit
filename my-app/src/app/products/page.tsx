@@ -4,6 +4,7 @@ import MeowArticle from "@/components/MeowArticle.jsx";
 
 // export const revalidate = 3;
 
+// throw new Error();
 export default async function Product() {
     const products = await getProducts();
 
