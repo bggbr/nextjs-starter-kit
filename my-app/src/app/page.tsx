@@ -1,11 +1,13 @@
 import Hero from "@/components/Hero";
-import Link from "next/link";
+import Card from "@/components/Card";
 
 export default function Home() {
     return (
         <>
             <section>
                 <Hero />
+                {/* @ts-expect-error Server Component */}
+                <Card />
             </section>
         </>
     );
