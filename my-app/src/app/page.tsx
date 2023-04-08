@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import Card from "@/components/Card";
+import FeaturedPosts from "@/components/FeaturedPosts";
 
 export default function Home() {
     return (
@@ -7,7 +7,7 @@ export default function Home() {
             <section>
                 <Hero />
                 {/* @ts-expect-error Server Component */}
-                <Card />
+                <FeaturedPosts />
             </section>
         </>
     );
