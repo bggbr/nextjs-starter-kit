@@ -1,6 +1,5 @@
 import Link from "next/link";
 import "./globals.css";
-import styles from "./layout.module.css";
 import { Open_Sans } from "next/font/google";
 
 const sans = Open_Sans({ subsets: ["latin"] });
@@ -13,17 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang='en' className={sans.className}>
-            <body>
-                <header className={styles.header}>
-                    <h1>Demo Note App</h1>
-                    <nav>
-                        <Link href='/products'>products</Link>
-                        <Link href='/contact'>Contact</Link>
-                        <Link href='/about'>About</Link>
-                    </nav>
-                </header>
-                {children}
-            </body>
+            <body>{children}</body>
         </html>
     );
 }
