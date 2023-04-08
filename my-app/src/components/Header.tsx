@@ -3,9 +3,9 @@ import React from "react";
 
 export default function Header() {
     return (
-        <header className='flex justify-between py-4 border-b-1 max-w-[1120px] mx-auto'>
+        <header className='flex justify-between p-4 '>
             <Link href='/'>
-                <h1 className='text-bold text-[40px]'>{"BoB's Blog"}</h1>
+                <h1 className='font-bold text-3xl'>{"BoB's Blog"}</h1>
             </Link>
             <nav className='flex space-x-4 justify-center items-center'>
                 <Link href='/'>Home</Link>

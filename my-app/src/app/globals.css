@@ -13,10 +13,6 @@
 
 html,
 body {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 0 10px;
-}
-
-a {
+    height: 100vh;
+    overflow-y: auto;
 }

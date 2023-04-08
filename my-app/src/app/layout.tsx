@@ -1,6 +1,7 @@
-import Link from "next/link";
 import "./globals.css";
 import { Open_Sans } from "next/font/google";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const sans = Open_Sans({ subsets: ["latin"] });
 
@@ -12,7 +13,11 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang='en' className={sans.className}>
-            <body>{children}</body>
+            <body className='flex flex-col max-w-screen-2xl w-full mx-auto px-[0.625rem]'>
+                <Header />
+                <main className='grow bg-black'>{children}</main>
+                <Footer />
+            </body>
         </html>
     );
 }
