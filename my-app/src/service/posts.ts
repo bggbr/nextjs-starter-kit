@@ -1,5 +1,5 @@
-import path from "path";
-import { readFile } from "fs/promises";
+import path from 'path';
+import { readFile } from 'fs/promises';
 
 export type Post = {
     title: string;
@@ -9,6 +9,11 @@ export type Post = {
     path: string;
     featured: boolean;
 };
+
+export async function getCategory() {
+    const categories = ['All Category'];
+    return getAllPosts().then((posts) => [...categories, ...new Set(posts.map((post) => post.category))]);
+}
 
 export async function getFeaturedPosts(): Promise<Post[]> {
     return getAllPosts() //
@@ -21,8 +26,8 @@ export async function getNonFeaturedPosts(): Promise<Post[]> {
 }
 
 export async function getAllPosts(): Promise<Post[]> {
-    const filePath = path.join(process.cwd(), "data", "posts.json");
-    const data = await readFile(filePath, "utf-8");
+    const filePath = path.join(process.cwd(), 'data', 'posts.json');
+    const data = await readFile(filePath, 'utf-8');
     return JSON.parse(data);
 }
 
