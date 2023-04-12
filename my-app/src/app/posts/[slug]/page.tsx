@@ -1,19 +1,30 @@
-import { headers } from 'next/headers';
+import MarkdownViewer from '@/components/MarkdownViewer';
 import { getPostContent } from '@/service/posts';
+import Image from 'next/image';
+import { AiTwotoneCalendar } from 'react-icons/ai';
 
 type Props = {
     params: {
         slug: string;
     };
 };
+
 export default async function page({ params: { slug } }: Props) {
-    const post = await getPostContent(slug);
-    console.log(post);
+    const { title, description, date, path, content } = await getPostContent(slug);
 
     return (
-        <section>
-            <h1>{post.title}</h1>
-            <pre>{post.content}</pre>
-        </section>
+        <article className="bg-gray-100 shadow-lg rounded-t-2xl overflow-hidden">
+            <Image className="w-full h-1/5 max-h-[500px]" src={`/images/posts/${path}.png`} alt={title} width={760} height={420} />
+            <section className="flex flex-col p-5">
+                <div className="flex self-end font-bold text-sky-600">
+                    <AiTwotoneCalendar className="h-[24px]" />
+                    <p className="font-semibold ml-2">{date.toString()}</p>
+                </div>
+                <h1 className="text-4xl font-bold mb-2">{title}</h1>
+                <p className="text-xl font-bold mb-2 ">{description}</p>
+                <div className="w-44 border-2 border-sky-600 mt-4 mb-8"></div>
+                <MarkdownViewer content={content} />
+            </section>
+        </article>
     );
 }
