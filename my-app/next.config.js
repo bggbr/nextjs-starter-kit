@@ -6,8 +6,10 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: "http",
-                hostname: "images.unsplash.com",
+                protocol: 'https',
+                hostname: 'images.unsplash.com',
+                port: '',
+                pathname: '/**',
             },
         ],
     },
@@ -15,13 +17,13 @@ const nextConfig = {
         return [
             // 예전에 사용된 페이지 같은 경우 처리하기 좋음 (SEO 측면)
             {
-                source: "/products/deleted_forever",
-                destination: "/products",
+                source: '/products/deleted_forever',
+                destination: '/products',
                 permanent: true, // 영원히
             },
             {
-                source: "/products/deleted_temp",
-                destination: "/products",
+                source: '/products/deleted_temp',
+                destination: '/products',
                 permanent: false, // 일시적 이동
             },
         ];
@@ -30,12 +32,12 @@ const nextConfig = {
         return [
             // 대체 개념
             {
-                source: "/bang",
-                destination: "/about/me/bang",
+                source: '/bang',
+                destination: '/about/me/bang',
             },
             {
-                source: "/items/:slug",
-                destination: "/products/:slug",
+                source: '/items/:slug',
+                destination: '/products/:slug',
             },
         ];
     },
