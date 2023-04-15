@@ -1,3 +1,11 @@
+import Career from "@/components/Career";
+import Hero from "@/components/Hero";
+
 export default function About() {
-    return <h1>About Us!</h1>;
+    return (
+        <>
+            <Hero />
+            <Career />
+        </>
+    );
 }
