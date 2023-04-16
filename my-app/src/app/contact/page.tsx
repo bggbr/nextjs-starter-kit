@@ -1,3 +1,11 @@
+import ContactMe from "@/components/ContactMe";
+import SendEmail from "@/components/SendEmail";
+
 export default function Contact() {
-    return <h1>Contact Us!</h1>;
+    return (
+        <>
+            <ContactMe />
+            <SendEmail />
+        </>
+    );
 }
