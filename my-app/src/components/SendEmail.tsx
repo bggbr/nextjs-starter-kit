@@ -19,6 +19,8 @@ export default function SendEmail() {
             setIsButton(false);
             console.log(formData);
         }, 2000);
+
+        fetch('/api/email', { method: 'POST', body: JSON.stringify(formData), headers: { 'Content-Type': 'application/json' } });
     };
 
     const validateInputs = () => (email.trim() && subject.trim() && message.trim() ? true : (alert('Please fill in all fields.'), false));
