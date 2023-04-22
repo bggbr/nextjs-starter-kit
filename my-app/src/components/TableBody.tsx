@@ -1,16 +1,21 @@
 "use client";
 import TableRow from "./TableRow";
+import { useState } from "react";
 import { Customer } from "@/service/customer";
+import TableModal from "./TableModal";
 
 type Props = {
     tableColumns: string[];
     tableData: Customer[];
     setTableData: (data: Customer[]) => void;
+    setTableModal: (data: boolean) => void;
+    setSelectedData: (data: Customer | null) => void;
 };
 
-export default function TableRows({ tableColumns, tableData, setTableData }: Props) {
+export default function TableRows({ tableColumns, tableData, setTableData, setTableModal, setSelectedData }: Props) {
     const handleEdit = (data: Customer) => {
-        console.log(`Edit ${data.id}`);
+        setTableModal(true);
+        setSelectedData(data);
     };
     const handleDelete = (data: Customer) => {
         const newTableData = tableData.filter((row: Customer) => row.id !== data.id);
