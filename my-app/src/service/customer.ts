@@ -16,3 +16,16 @@ export async function getCustomers(): Promise<Customer[]> {
     const customers = await JSON.parse(data);
     return customers;
 }
+
+export async function getColumns(): Promise<string[]> {
+    const customers: Customer[] = await getCustomers();
+    const columns = customers.reduce<string[]>((prev, curr) => {
+        Object.keys(curr).forEach((customerKey) => {
+            if (!prev.includes(customerKey)) {
+                prev.push(customerKey);
+            }
+        });
+        return prev;
+    }, []);
+    return columns;
+}

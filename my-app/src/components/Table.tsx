@@ -1,27 +1,19 @@
 "use client";
 import { Customer } from "@/service/customer";
 import React from "react";
+import TableBody from "./TableBody";
+import TableHeader from "./TableHeader";
 
 type Props = {
     customers: Customer[];
 };
 
-export default function Table({ customers }: Props) {
-    console.log(customers[0]);
-
+export default function Table({}: Props) {
     return (
         <div>
             <table className='table-fixed'>
-                <thead>
-                    <tr>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                    </tr>
-                </tbody>
+                <TableHeader />
+                <TableBody />
             </table>
         </div>
     );
