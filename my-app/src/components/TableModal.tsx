@@ -3,14 +3,14 @@ import { useState } from "react";
 import { Customer } from "@/service/customer";
 
 type Props = {
-    selectedData: Customer;
+    selectedData: Customer | null;
     setTableData: (data: Customer[]) => void;
-    setSelectedData: (data: Customer | null) => void;
+    setTableModal: (data: boolean) => void;
     tableData: Customer[];
 };
 
 export default function TableModal({ selectedData, setTableModal, setTableData, tableData }: Props) {
-    const [formState, setFormState] = useState(selectedData);
+    const [formState, setFormState] = useState<Customer | null>(selectedData);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
         setFormState({ ...formState, [key]: e.target.value });
@@ -20,7 +20,7 @@ export default function TableModal({ selectedData, setTableModal, setTableData, 
         setTableModal(false);
     };
     const editModal = () => {
-        const newTableData = tableData.map((data) => (formState.id === data.id ? formState : data));
+        const newTableData = tableData.map((data) => (formState?.id === data.id ? formState : data));
         setTableData(newTableData);
         setTableModal(false);
     };
