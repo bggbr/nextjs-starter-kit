@@ -1,13 +1,13 @@
 import Table from "@/components/Table";
-import { getCustomers, getColumns } from "@/service/customer";
+import { Customer, getCustomers, getColumns } from "@/service/customer";
 
 export default async function page() {
-    const customers = await getCustomers();
+    const customers: Customer[] = await getCustomers();
     const columns = await getColumns();
 
     return (
-        <div>
-            <Table customers={customers} />
+        <div className='mx-auto'>
+            <Table data={customers} columns={columns} />
         </div>
     );
 }

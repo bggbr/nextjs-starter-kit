@@ -4,17 +4,26 @@ import React from "react";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 
+interface TableStyles {
+    textPosition?: string;
+    backgroundColor?: string;
+    shadow?: string;
+    cellSpacing?: string;
+}
+
 type Props = {
-    customers: Customer[];
+    data: Customer[];
+    columns: string[];
+    tableStyles?: TableStyles;
 };
 
-export default function Table({}: Props) {
+export default function Table({ data, columns }: Props) {
     return (
-        <div>
-            <table className='table-fixed'>
-                <TableHeader />
-                <TableBody />
+        <>
+            <table className={`mx-auto table-fixed text-center`}>
+                <TableHeader columns={columns} />
+                <TableBody columns={columns} data={data} />
             </table>
-        </div>
+        </>
     );
 }

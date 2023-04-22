@@ -2,6 +2,7 @@ import path from "path";
 import { readFile } from "fs/promises";
 
 export type Customer = {
+    [key: string]: any;
     id: number;
     name: string;
     email: string;
