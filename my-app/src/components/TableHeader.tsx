@@ -6,9 +6,10 @@ export default function TableColumns({ columns }: { columns: string[] }) {
             <tr>
                 {columns.map((column, index) => (
                     <th className='py-4 px-10' key={index}>
-                        {column}
+                        {column.charAt(0).toUpperCase() + column.slice(1)}
                     </th>
                 ))}
+                <th className='py-4 px-10'>Details</th>
             </tr>
         </thead>
     );
