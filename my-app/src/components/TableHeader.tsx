@@ -1,10 +1,10 @@
 "use client";
 
-export default function TableColumns({ columns }: { columns: string[] }) {
+export default function TableColumns({ tableColumns }: { tableColumns: string[] }) {
     return (
         <thead className={`bg-turquoise text-white`}>
             <tr>
-                {columns.map((column, index) => (
+                {tableColumns.map((column, index) => (
                     <th className='py-4 px-10' key={index}>
                         {column.charAt(0).toUpperCase() + column.slice(1)}
                     </th>

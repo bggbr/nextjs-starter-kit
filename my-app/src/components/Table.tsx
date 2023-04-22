@@ -1,6 +1,6 @@
 "use client";
 import { Customer } from "@/service/customer";
-import React from "react";
+import React, { useState } from "react";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 
@@ -18,11 +18,13 @@ type Props = {
 };
 
 export default function Table({ data, columns }: Props) {
+    const [tableData, setTableData] = useState<Customer[]>(data);
+    const [tableColumns, setTableColumns] = useState<string[]>(columns);
     return (
         <>
             <table className={`mx-auto table-fixed text-center`}>
-                <TableHeader columns={columns} />
-                <TableBody columns={columns} data={data} />
+                <TableHeader tableColumns={tableColumns} />
+                <TableBody tableColumns={tableColumns} tableData={tableData} setTableData={setTableData} />
             </table>
         </>
     );
