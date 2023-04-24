@@ -1,7 +1,7 @@
 "use client";
 import TableRow from "./TableRow";
 import { useState } from "react";
-import { Customer } from "@/service/customer";
+import { Customer, getTotalPageCount, getStartIndex } from "@/service/customer";
 import TableModal from "./TableModal";
 
 type Props = {
@@ -10,9 +10,39 @@ type Props = {
     setTableData: (data: Customer[]) => void;
     setTableModal: (data: boolean) => void;
     setSelectedData: (data: Customer | null) => void;
+    visibleRows: number;
+    currPageNum: number;
 };
 
-export default function TableRows({ tableColumns, tableData, setTableData, setTableModal, setSelectedData }: Props) {
+export default function TableRows({
+    tableColumns,
+    tableData,
+    setTableData,
+    setTableModal,
+    setSelectedData,
+    visibleRows,
+    currPageNum,
+}: Props) {
+    const [currPage, setCurrPage] = useState<number>(currPageNum);
+
+    console.log(currPage);
+
+    // test
+    function getTotalPageCount(totalLength: number, rowCount: number): number {
+        const pageCount = Math.ceil(totalLength / rowCount);
+        return pageCount;
+    }
+
+    function getStartIndex(currPage: number, rowCount: number) {
+        const startIndex = (currPage - 1) * rowCount;
+        return startIndex;
+    }
+    const totalPageCount = getTotalPageCount(tableData.length, visibleRows);
+    const startIndex = getStartIndex(currPage, visibleRows);
+
+    console.log("totalPageCount", totalPageCount);
+    console.log("startIndex", startIndex);
+
     const handleEdit = (data: Customer) => {
         setTableModal(true);
         setSelectedData(data);
@@ -23,7 +53,7 @@ export default function TableRows({ tableColumns, tableData, setTableData, setTa
     };
     return (
         <tbody>
-            {tableData.map((row: Customer, index: number) => (
+            {tableData.slice(startIndex, visibleRows).map((row: Customer, index: number) => (
                 <TableRow
                     key={row.id || index} //
                     row={row}

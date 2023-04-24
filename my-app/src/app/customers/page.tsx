@@ -7,7 +7,7 @@ export default async function page() {
 
     return (
         <div className='mx-auto'>
-            <Table data={customers} columns={columns} />
+            <Table data={customers} columns={columns} visibleRowCount={7} />
         </div>
     );
 }

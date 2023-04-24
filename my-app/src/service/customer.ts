@@ -30,3 +30,13 @@ export async function getColumns(): Promise<string[]> {
     }, []);
     return columns;
 }
+
+// export function getTotalPageCount(totalLength: number, rowCount: number): number {
+//     const pageCount = Math.ceil(totalLength / rowCount);
+//     return pageCount;
+// }
+
+// export function getStartIndex(currPageNum: number, rowCount: number) {
+//     const startIndex = (currPageNum - 1) * rowCount;
+//     return startIndex;
+// }
