@@ -2,6 +2,7 @@ import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+// import StoreProvider from "./store-provider"
 
 const sans = Open_Sans({ subsets: ["latin"] });
 
