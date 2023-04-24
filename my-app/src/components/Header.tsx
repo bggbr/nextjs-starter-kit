@@ -13,6 +13,7 @@ export default function Header() {
                 <Link href='/posts'>Posts</Link>
                 <Link href='/contact'>Contact</Link>
                 <Link href='/customers'>Customer</Link>
+                <Link href='/movies'>Movies</Link>
             </nav>
         </header>
     );
