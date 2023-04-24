@@ -12,7 +12,7 @@ export default function Header() {
                 <Link href='/about'>About</Link>
                 <Link href='/posts'>Posts</Link>
                 <Link href='/contact'>Contact</Link>
-                <Link href='/customers'>Customers</Link>
+                <Link href='/customers'>Customer</Link>
             </nav>
         </header>
     );

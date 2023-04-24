@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import TableBody from "./TableBody";
 import TableHeader from "./TableHeader";
 import TableModal from "./TableModal";
+import TablePagination from "./TablePagination";
 
 interface TableStyles {
     textPosition?: string;
@@ -66,15 +67,7 @@ export default function Table({ data, columns, visibleRowCount }: Props) {
                     setCurrPageNum={setCurrPageNum}
                 />
             </table>
-            <div className='my-4'>
-                <ul className='flex justify-center gap-x-4'>
-                    {Array.from({ length: totalPageCount }, (_, i) => (
-                        <li key={i} onClick={() => handlePageClick(i + 1)}>
-                            <button className='bg-gray-200 text-gray-700 px-4 py-2 rounded-lg'>{i + 1}</button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <TablePagination totalPageCount={totalPageCount} handlePageClick={handlePageClick} />
         </>
     );
 }
