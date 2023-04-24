@@ -35,11 +35,10 @@ export default function Table({ data, columns, visibleRowCount }: Props) {
     const [totalPageCount, setTotalPageCount] = useState<number>(0);
 
     useEffect(() => {
-        setTotalPageCount(tableData.length / visibleRows);
+        setTotalPageCount(Math.ceil(tableData.length / visibleRows));
     }, [tableData]);
 
     const handlePageClick = (pageNum: number) => {
-        // 페이지 번호를 클릭했을 때의 처리 로직을 작성하세요.
         setCurrPageNum(pageNum);
     };
 
@@ -63,6 +62,8 @@ export default function Table({ data, columns, visibleRowCount }: Props) {
                     setSelectedData={setSelectedData}
                     visibleRows={visibleRows}
                     currPageNum={currPageNum}
+                    totalPageCount={totalPageCount}
+                    setCurrPageNum={setCurrPageNum}
                 />
             </table>
             <div className='my-4'>
