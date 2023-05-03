@@ -13,6 +13,7 @@
         "@types/nodemailer": "^6.4.7",
         "@types/react": "18.0.28",
         "@types/react-dom": "18.0.11",
+        "@types/uuid": "^9.0.1",
         "eslint": "8.36.0",
         "eslint-config-next": "13.2.4",
         "immer": "^10.0.1",
@@ -23,9 +24,12 @@
         "react-icons": "^4.8.0",
         "react-markdown": "^8.0.6",
         "react-multi-carousel": "^2.8.3",
+        "react-redux": "^8.0.5",
         "react-syntax-highlighter": "^15.5.0",
+        "redux": "^4.2.1",
         "remark-gfm": "^3.0.1",
         "typescript": "5.0.2",
+        "uuid": "^9.0.0",
         "yup": "^1.1.1"
     },
     "devDependencies": {

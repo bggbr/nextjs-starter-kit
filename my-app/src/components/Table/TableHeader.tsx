@@ -1,14 +1,14 @@
 "use client";
 
-type Props = {
-    tableColumns: string[];
-};
+import { RootState } from "@/redux/store/reducers";
+import { useSelector } from "react-redux";
 
-export default function TableColumns({ tableColumns }: Props) {
+export default function TableColumns() {
+    const { columns } = useSelector((state: RootState) => state.table);
     return (
         <thead className={`bg-turquoise text-white`}>
             <tr>
-                {tableColumns.map((column, index) => (
+                {columns.map((column, index) => (
                     <th className="py-4 px-10" key={index}>
                         {column.charAt(0).toUpperCase() + column.slice(1)}
                     </th>

@@ -3,76 +3,56 @@
 import TableRow from "./TableRow";
 import { useEffect, useState } from "react";
 import { Customer } from "@/service/customer";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/reducers";
 
 type Props = {
-  tableColumns: string[];
-  tableData: Customer[];
-  setTableData: (data: Customer[]) => void;
-  setTableModal: (data: boolean) => void;
-  setSelectedData: (data: Customer | null) => void;
-  setCurrPageNum: (data: number) => void;
-  visibleRows: number;
-  currPageNum: number;
-  totalPageCount: number;
+    tableColumns: string[];
+    setCurrPageNum: (data: number) => void;
+    visibleRows: number;
+    currPageNum: number;
+    totalPageCount: number;
 };
 
-export default function TableRows({
-  tableColumns,
-  tableData,
-  setTableData,
-  setTableModal,
-  setSelectedData,
-  visibleRows,
-  currPageNum,
-  totalPageCount,
-  setCurrPageNum,
-}: Props) {
-  const [visibleData, setVisibleData] = useState<Customer[]>([]);
+export default function TableRows() {
+    const {
+        customers,
+        filteredCustomer,
+        columns,
+        currPageNumber,
+        rowCountPerPage,
+        totalPageCount,
+    } = useSelector((state: RootState) => state.table);
+    const dispatch = useDispatch();
 
-  const getStartIndex = (currPage: number, rowCount: number) => {
-    const startIndex = (currPage - 1) * rowCount;
-    return startIndex;
-  };
+    const getStartIndex = (currPage: number, rowCount: number) => {
+        const startIndex = (currPage - 1) * rowCount;
+        return startIndex < 0 ? 0 : startIndex;
+    };
 
-  const handleEdit = (data: Customer) => {
-    setTableModal(true);
-    setSelectedData(data);
-  };
+    useEffect(() => {
+        if (currPageNumber > totalPageCount) {
+            dispatch({ type: "SET_CURRENT_PAGE", payload: { pageNum: totalPageCount } });
+        }
 
-  const handleDelete = (data: Customer) => {
-    const newTableData = tableData.filter(
-      (row: Customer) => row.id !== data.id
+        const startIndex = getStartIndex(currPageNumber, rowCountPerPage);
+        const endIndex = startIndex + rowCountPerPage;
+        const visibleData = customers.slice(startIndex, endIndex);
+
+        dispatch({ type: "SET_FILTERED_CUSTOMER", payload: visibleData });
+    }, [customers, currPageNumber, totalPageCount]);
+
+    return (
+        <tbody>
+            {filteredCustomer.map((row: Customer) => {
+                return (
+                    <TableRow
+                        key={row.id} //
+                        row={row}
+                        tableColumns={columns}
+                    />
+                );
+            })}
+        </tbody>
     );
-    setTableData(newTableData);
-  };
-
-  useEffect(() => {
-    let currentPage = currPageNum;
-
-    if (currentPage > totalPageCount) {
-      currentPage = totalPageCount;
-    }
-
-    const startIndex = getStartIndex(currentPage, visibleRows);
-    const endIndex = startIndex + visibleRows;
-    const visibleData = tableData.slice(startIndex, endIndex);
-
-    setVisibleData(visibleData);
-  }, [currPageNum, tableData, totalPageCount]);
-
-  return (
-    <tbody>
-      {visibleData.map((row: Customer, index: number) => {
-        return (
-          <TableRow
-            key={row.id || index} //
-            row={row}
-            tableColumns={tableColumns}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-          />
-        );
-      })}
-    </tbody>
-  );
 }

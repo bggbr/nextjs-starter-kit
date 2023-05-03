@@ -4,9 +4,7 @@ import React from "react";
 export default function Home() {
     return (
         <div>
-            ttt
-            <Image src='/next.svg' alt='profile' />
-            test
+            <Image src="/next.svg" alt="profile" />
         </div>
     );
 }
