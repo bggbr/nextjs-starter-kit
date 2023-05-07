@@ -36,7 +36,7 @@ export type TableAction =
     | { type: 'SET_CURRENT_PAGE'; payload: number | any }
     | { type: 'SET_TOTAL_PAGE_LENGTH'; payload: number | any }
     | { type: 'SET_FILTERED_CUSTOMER'; payload: Customer[] }
-    | { type: 'FETCH_CUSTOMER'; payload: Customer }
+    | { type: 'ADD_CUSTOMER'; payload: Customer }
     | { type: 'CREATE_MODAL_STATE'; payload: boolean };
 
 const tableReducer = (state = initialState, action: TableAction): customerTable => {
@@ -86,8 +86,9 @@ const tableReducer = (state = initialState, action: TableAction): customerTable 
                 draft.filteredCustomer = payload;
                 break;
             }
-            case 'FETCH_CUSTOMER': {
-                // console.log('FETCH_CUSTOMER', payload);
+            case 'ADD_CUSTOMER': {
+                const newCustomer = payload;
+                draft.customers.push(newCustomer);
                 break;
             }
             case 'CREATE_MODAL_STATE': {
@@ -112,6 +113,7 @@ export const fetchData =
         });
         const data = await res.json();
         dispatch({ type: 'FETCH_CUSTOMER', payload: data });
+        dispatch({ type: 'ADD_CUSTOMER', payload: data });
     };
 
 export default tableReducer;
