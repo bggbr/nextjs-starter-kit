@@ -87,7 +87,7 @@ const tableReducer = (state = initialState, action: TableAction): customerTable 
                 break;
             }
             case 'FETCH_CUSTOMER': {
-                console.log('FETCH_CUSTOMER', payload);
+                // console.log('FETCH_CUSTOMER', payload);
                 break;
             }
             case 'CREATE_MODAL_STATE': {
@@ -111,7 +111,6 @@ export const fetchData =
             body: JSON.stringify(formState),
         });
         const data = await res.json();
-        console.log('fetchData', data);
         dispatch({ type: 'FETCH_CUSTOMER', payload: data });
     };
 

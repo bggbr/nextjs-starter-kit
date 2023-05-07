@@ -23,7 +23,6 @@ export default function TableCreateModal() {
                 return;
             }
         });
-        console.log('createButton =', formState);
 
         dispatch(fetchData(formState));
         dispatch({ type: 'CREATE_MODAL_STATE', payload: !isCreateModalOpen });
